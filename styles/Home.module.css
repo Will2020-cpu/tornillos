@@ -30,6 +30,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     color: #333333;
+    text-align: center;
     transition: ease 0.2s color;
 }
 

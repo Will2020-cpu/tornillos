@@ -9,7 +9,7 @@ import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-s
 const NavBar = () => {
     return (
         <>
-            <div className="bg-customGray">
+            <div className="bg-customGray flex flex-col">
                 <div className="h-10 flex w-11/12 m-auto justify-between">
                     <nav className="flex h-full items-center space-x-2 nav">
                         <a href="#" className="text-white hover:text-red-400 transition duration-500"><FontAwesomeIcon icon={faMapMarkerAlt} /> Direccion </a>
