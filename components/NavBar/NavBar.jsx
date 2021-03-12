@@ -28,7 +28,7 @@ const NavBar = () => {
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Inicio</a></Link>
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Categoria</a></Link>
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Productos</a></Link>
-                        <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Porque nosotros</a></Link>
+                        <Link href="/#whyus"><a className="text-white hover:text-red-400 transition duration-500">Porque nosotros</a></Link>
                     </nav>
 
                     <nav className="h-full flex items-center nav uppercase space-x-4">

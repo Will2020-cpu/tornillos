@@ -79,3 +79,19 @@ export const pernos = [
         imagen: '/pernos/perno6.webp'
     }
 ]
+
+
+export const tornilloBuy = [ 
+    {
+        nombre:'Compra en cantidad',
+        imagen: '/tornillobuy.webp',
+    },
+    {
+        nombre:'Compra Rapida',
+        imagen: '/fastbuy.webp'
+    },
+    {
+        nombre:'Satisfaccion Garantizada',
+        imagen:'/guaranted.webp'
+    }
+]

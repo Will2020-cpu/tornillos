@@ -3,10 +3,13 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout from '../components/NavBar/Layout'
 import { motion } from 'framer-motion'
-import { pernos, tornillos, tuercas } from '../productos'
+import { pernos, tornillos, tuercas,tornilloBuy } from '../productos'
 import AliceCarousel from 'react-alice-carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import MyGallery from '../components/Gallery/Gallery'
+
+
 
 
 const easing = [0.6, -0.05, 0.01, 0.99]
@@ -200,8 +203,8 @@ export default function Home() {
 
 
         {/* Section Productos */}
-        <div className="mt-40 relative w-11/12 m-auto">
-          <h1 className="text-customRed uppercase text-4xl text-center">Productos</h1>
+        <motion.div variants={fadeInUp} className="mt-40 relative w-11/12 m-auto">
+          <h1 className="text-customRed uppercase text-4xl text-center mb-10">Productos</h1>
           <AliceCarousel
             disableDotsControls
             items={items}
@@ -209,6 +212,43 @@ export default function Home() {
             renderNextButton={renderNext}
             renderPrevButton={renderPrev}
           />
+        </motion.div>
+
+
+        {/* Section porque nosotros */}
+        <div className="mt-40 w-11/12 m-auto" id="whyus">
+          <h1 className="text-customRed uppercase text-4xl text-center">Porque Nosotros</h1>
+          <motion.div variants={stagger} className="grid grid-cols-3 gap-4 mt-10">
+            {
+              tornilloBuy.map(({ nombre, imagen },i)=>(
+                <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center space-y-4" key={i}>
+                    <div className="py-1 px-1 border border-customRed rounded-full">
+                      <img src={imagen} alt={nombre} className="h-32"/>
+                    </div>
+                    <div className="">
+                      <h4 className={styles.textImage}>{nombre}</h4>
+                    </div>
+                </motion.div>
+              ))
+            }
+          </motion.div>
+        </div>
+
+        {/* Section Sobre nosotros */}
+        <motion.div variants={fadeInUp} className="mt-40 w-11/12 m-auto flex items-center justify-around">
+            <div className="">
+              <img src="/about.webp" alt="about" className="h-96"/>
+            </div>
+            <div className="w-5/12">
+              <h1 className="text-customRed uppercase text-3xl text-center">Sobre nosotros</h1>
+              <p>We, zuky tech at in are leading firm engaged in manufacturing impeccable quality nuts, screw and bolts to our honored patrons. Our philosophy is aimed at creating an enriching and fulfilling environment for our employees and maintaining long term relationships with our customers and vendors. Our focus on the future is towards continuous improvement.</p>
+            </div>
+        </motion.div>
+
+        { /* Section Gallery */ }
+        <div className="w-11/12 m-auto mt-40">
+          <h1 className="text-customRed uppercase text-4xl text-center mb-10">Galeria</h1>
+          <MyGallery/>
         </div>
       </Layout>
     </motion.div>
