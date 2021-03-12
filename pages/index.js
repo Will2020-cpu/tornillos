@@ -3,10 +3,20 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout from '../components/NavBar/Layout'
 import { motion } from 'framer-motion'
-import { pernos, tornillos,tuercas } from '../productos'
+import { pernos, tornillos, tuercas } from '../productos'
+import AliceCarousel from 'react-alice-carousel'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const easing = [0.6, -0.05, 0.01, 0.99]
+
+const responsive = {
+  0: { items: 1 },
+  568: { items: 2 },
+  1024: { items: 6 }
+}
+
 
 
 const fadeInUp = {
@@ -35,6 +45,82 @@ const stagger = {
 
 
 export default function Home() {
+
+  const renderNext = ({ isDisabled }) =>{
+    return(
+      <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{visibility:isDisabled ? 'hidden' : 'visible'}}>
+        <FontAwesomeIcon icon={faAngleRight}/>
+      </button>
+    )
+  }
+
+  const renderPrev = ({ isDisabled }) =>{
+    return(
+      <button className="py-2 left-0 border top-1/3 px-4 rounded-full bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none" style={{visibility: isDisabled ? 'hidden' : 'visible'}}>
+        <FontAwesomeIcon icon={faAngleLeft}/>
+      </button>
+    )
+  }
+
+  const items = [
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+      <div className="max-w-xs">
+        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+      </div>
+      <div>
+        <h1 className={styles.textImage}>Producto</h1>
+      </div>
+    </motion.div>,
+  ]
+
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -55,39 +141,39 @@ export default function Home() {
 
         {/** Section tornillos */}
         <div className="mt-10">
-          <h1 className="text-customRed uppercase text-2xl text-center">Tornillos</h1>
-            <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
-                {
-                  tornillos.map(({ nombre,imagen },i) =>(
-                    <motion.div variants={fadeInUp} whileHover={{ scale:1.05 }} whileTap={{ scale:0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                        <div>
-                            <motion.img initial={{ x:60, opacity:0 }} animate={{ x:0, opacity:1 }} src={imagen} alt={nombre} className="h-44"/>
-                        </div> 
-                        <div className="">
-                            <h1 className={styles.textImage}>{nombre}</h1>
-                        </div>
-                    </motion.div>
-                  ))
-                }
-            </motion.div>
+          <h1 className="text-customRed uppercase text-4xl text-center">Tornillos</h1>
+          <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
+            {
+              tornillos.map(({ nombre, imagen }, i) => (
+                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
+                  <div>
+                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
+                  </div>
+                  <div className="">
+                    <h1 className={styles.textImage}>{nombre}</h1>
+                  </div>
+                </motion.div>
+              ))
+            }
+          </motion.div>
         </div>
 
 
         {/* Section Tuercas */}
         <div className="mt-40">
-          <h1 className="text-customRed uppercase text-2xl text-center">Tuercas</h1>
+          <h1 className="text-customRed uppercase text-4xl text-center">Tuercas</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12  m-auto grid grid-cols-6 gap-4">
             {
-                tuercas.map(({ nombre,imagen },i) =>(
-                  <motion.div variants={fadeInUp} whileHover={{ scale:1.05 }} whileTap={{ scale:0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                      <div>
-                        <motion.img initial={{ x:60, opacity:0 }} animate={{ x:0, opacity:1 }} src={imagen} alt={nombre}/>
-                      </div>
-                      <div>
-                        <h1 className={styles.textImage}>{nombre}</h1>
-                      </div>
-                  </motion.div>
-                ))
+              tuercas.map(({ nombre, imagen }, i) => (
+                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
+                  <div>
+                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} />
+                  </div>
+                  <div>
+                    <h1 className={styles.textImage}>{nombre}</h1>
+                  </div>
+                </motion.div>
+              ))
             }
           </motion.div>
         </div>
@@ -95,21 +181,34 @@ export default function Home() {
 
         { /* Section Pernos */}
         <div className="mt-40">
-          <h1 className="text-customRed uppercase text-2xl text-center">Pernos</h1>
+          <h1 className="text-customRed uppercase text-4xl text-center">Pernos</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
-              {
-                pernos.map(({nombre, imagen},i)=>(
-                  <motion.div variants={fadeInUp} whileHover={{ scale:1.05 }} whileTap={{scale:0.95}} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                      <div>
-                        <motion.img initial={{ x:60, opacity:0 }} animate={{ x:0, opacity:1 }} src={imagen}/>
-                      </div>
-                      <div>
-                        <h1 className={styles.textImage}>{nombre}</h1>
-                      </div>
-                  </motion.div>
-                ))
-              }            
+            {
+              pernos.map(({ nombre, imagen }, i) => (
+                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
+                  <div>
+                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} />
+                  </div>
+                  <div>
+                    <h1 className={styles.textImage}>{nombre}</h1>
+                  </div>
+                </motion.div>
+              ))
+            }
           </motion.div>
+        </div>
+
+
+        {/* Section Productos */}
+        <div className="mt-40 relative w-11/12 m-auto">
+          <h1 className="text-customRed uppercase text-4xl text-center">Productos</h1>
+          <AliceCarousel
+            disableDotsControls
+            items={items}
+            responsive={responsive}
+            renderNextButton={renderNext}
+            renderPrevButton={renderPrev}
+          />
         </div>
       </Layout>
     </motion.div>
