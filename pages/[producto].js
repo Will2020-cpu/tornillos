@@ -13,21 +13,22 @@ export default function Producto() {
         <>
             <Layout>
                 <motion.div
-                    exit ={{opacity:0}}
+                    exit={{ opacity: 0 }}
                     animate='animate'
                     initial='initial'
                     className={styles.container}
                 >
                     <div className="p-2">
                         <div className="p-2 text-sm"><h3>Categorias Tornillos</h3></div>
-                        <div className="bg-white rounded-lg border p-8 shadow-xl flex">
+                        <div className="bg-white rounded-lg border p-8 shadow-2xl flex space-x-4">
                             <div className="p-4 border rounded-lg max-w-lg">
-                                <img className="h-96" src="https://image1.jdomni.in/product/CC/86/50/A83AF546ADB726F3867EA85CCF_1509609145430.jpg" alt="test"/>
+                                <img className="h-96" src="https://image1.jdomni.in/product/CC/86/50/A83AF546ADB726F3867EA85CCF_1509609145430.jpg" alt="test" />
+                            </div>
+                            <div className="">
+                                <h4>Tonillo XDXDXDahdjkasdghad </h4>
                             </div>
                         </div>
-                        <div className="">
-                            <h4></h4>
-                        </div>
+
                     </div>
                 </motion.div>
             </Layout>

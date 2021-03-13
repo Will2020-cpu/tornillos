@@ -145,7 +145,7 @@ export default function Home() {
         {/** Section tornillos */}
         <div className="mt-10" id="categorias">
           <h1 className="text-customRed uppercase text-4xl text-center">Tornillos</h1>
-          <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
+          <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-1 lg:grid-cols-6 gap-4">
             {
               tornillos.map(({ nombre, imagen }, i) => (
                 <Link href='/categorias' key={i}>
@@ -167,12 +167,12 @@ export default function Home() {
         {/* Section Tuercas */}
         <div className="mt-40">
           <h1 className="text-customRed uppercase text-4xl text-center">Tuercas</h1>
-          <motion.div variants={stagger} className="mt-10 w-11/12  m-auto grid grid-cols-6 gap-4">
+          <motion.div variants={stagger} className="mt-10 w-11/12  m-auto grid-cols-1 grid lg:grid-cols-6 gap-4">
             {
               tuercas.map(({ nombre, imagen }, i) => (
                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
                   <div>
-                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} />
+                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
                   </div>
                   <div>
                     <h1 className={styles.textImage}>{nombre}</h1>
@@ -187,12 +187,12 @@ export default function Home() {
         { /* Section Pernos */}
         <div className="mt-40">
           <h1 className="text-customRed uppercase text-4xl text-center">Pernos</h1>
-          <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
+          <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-1 lg:grid-cols-6 gap-4">
             {
               pernos.map(({ nombre, imagen }, i) => (
                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
                   <div>
-                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} />
+                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} className="h-44" />
                   </div>
                   <div>
                     <h1 className={styles.textImage}>{nombre}</h1>
@@ -221,7 +221,7 @@ export default function Home() {
         {/* Section porque nosotros */}
         <div className="mt-40 w-11/12 m-auto" id="whyus">
           <h1 className="text-customRed uppercase text-4xl text-center">Porque Nosotros</h1>
-          <motion.div variants={stagger} className="grid grid-cols-3 gap-4 mt-10">
+          <motion.div variants={stagger} className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
             {
               tornilloBuy.map(({ nombre, imagen }, i) => (
                 <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center space-y-4" key={i}>
@@ -238,11 +238,11 @@ export default function Home() {
         </div>
 
         {/* Section Sobre nosotros */}
-        <motion.div variants={fadeInUp} id="nosotros" className="mt-40 w-11/12 m-auto flex items-center justify-around">
+        <motion.div variants={fadeInUp} id="nosotros" className="mt-40 w-11/12 m-auto flex flex-col lg:flex-row items-center justify-around">
           <div className="">
             <img src="/about.webp" alt="about" className="h-96" />
           </div>
-          <div className="w-5/12">
+          <div className="w-full lg:w-5/12">
             <h1 className="text-customRed uppercase text-3xl text-center">Sobre nosotros</h1>
             <p>We, zuky tech at in are leading firm engaged in manufacturing impeccable quality nuts, screw and bolts to our honored patrons. Our philosophy is aimed at creating an enriching and fulfilling environment for our employees and maintaining long term relationships with our customers and vendors. Our focus on the future is towards continuous improvement.</p>
           </div>
@@ -258,14 +258,14 @@ export default function Home() {
         <div className="w-8/12 m-auto mt-40" id="contacto">
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Contactanos</h1>
           <form className="flex flex-col space-y-8 w-full justify-center">
-            <div className="flex space-x-8 w-full justify-center">
+            <div className="flex flex-col space-y-4 lg:flex-row lg:space-x-8 w-full justify-center">
               <div className="flex flex-col space-y-4">
-                <input className="border p-2 w-80  focus:outline-none rounded-lg bg-gray-50" placeholder="Nombre Completo" />
-                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Numero de Telefono" />
-                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Email" />
+                <input className="border p-2 lg:w-80 w-auto focus:outline-none rounded-lg bg-gray-50" placeholder="Nombre Completo" />
+                <input className="border p-2 lg:w-80 w-auto focus:outline-none rounded-lg bg-gray-50" placeholder="Numero de Telefono" />
+                <input className="border p-2 lg:w-80 w-auto focus:outline-none rounded-lg bg-gray-50" placeholder="Email" />
               </div>
               <div className="flex">
-                <textarea className="border focus:outline-none resize-none rounded-lg w-96 p-2 bg-gray-50" placeholder="Mensaje" />
+                <textarea className="border focus:outline-none resize-none rounded-lg lg:w-96 w-full p-2 bg-gray-50" placeholder="Mensaje" />
               </div>
             </div>
             <div className="flex justify-center items-center">
