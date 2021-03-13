@@ -1,15 +1,11 @@
-import { motion } from 'framer-motion'
+import { AnimateSharedLayout, motion } from 'framer-motion'
 import Head from 'next/head'
 import Layout from '../components/NavBar/Layout'
 import styles from '../styles/categorias.module.css'
+import Link from 'next/link'
+
 
 const easing = [0.6, -0.05, 0.01, 0.99]
-
-const responsive = {
-    0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 6 }
-}
 
 
 
@@ -98,16 +94,20 @@ export default function Categorias() {
                             </div>
 
                             {/* Section Productos cards */}
-                            <motion.div variants={stagger} className="grid grid-cols-4 gap-4 p-4">
-                                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
-                                    <div className="border rounded-lg">
-                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src="https://image1.jdomni.in/product/06062019/62/22/DD/1307DF23F8A4097EB9B7C18895_1559810699847.jpg" className="h-90" alt="testing"/>
-                                    </div>
-                                    <div>
-                                        <h4 className="">Tornillo</h4>
-                                    </div>
+                            <AnimateSharedLayout type="crossfade">
+                                <motion.div variants={stagger} className="grid grid-cols-4 gap-4 p-4">
+                                    <Link href='test'>
+                                        <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
+                                            <div className="border rounded-lg">
+                                                <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src="https://image1.jdomni.in/product/06062019/62/22/DD/1307DF23F8A4097EB9B7C18895_1559810699847.jpg" className="h-90" alt="testing" />
+                                            </div>
+                                            <div className="">
+                                                <h4 className="overflow-ellipsis overflow-hidden break-normal">Tornilloalsudhasdgasjhdhasdahsdahsdasdgfasdgfgad</h4>
+                                            </div>
+                                        </motion.div>
+                                    </Link>
                                 </motion.div>
-                            </motion.div>
+                            </AnimateSharedLayout>
                         </div>
                     </div>
                 </motion.div>

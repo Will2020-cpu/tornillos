@@ -148,8 +148,8 @@ export default function Home() {
           <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
             {
               tornillos.map(({ nombre, imagen }, i) => (
-                <Link href='/categorias'>
-                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
+                <Link href='/categorias' key={i}>
+                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" >
                     <div>
                       <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
                     </div>
@@ -213,6 +213,7 @@ export default function Home() {
             responsive={responsive}
             renderNextButton={renderNext}
             renderPrevButton={renderPrev}
+            className=""
           />
         </motion.div>
 

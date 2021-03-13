@@ -8,10 +8,10 @@ config.autoAddCss = false
 function MyApp({ Component, pageProps, router }) {
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <Component {...pageProps} key={router.route}/>
-    </AnimatePresence>
-  ) 
+      <AnimatePresence exitBeforeEnter>
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
+  )
 }
 
 export default MyApp
