@@ -1,0 +1,130 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    box-shadow:0 0 9px rgb(0 0 0 / 20%);
+}
+
+.leftSection {
+    max-width: 218px;
+    width: 218px;
+    flex: 0 0 218px;
+    display: table;
+    padding-top: 1.0625rem;
+    font-family: Poppins, sans-serif;   
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.225rem;
+    align-items: baseline;
+}
+
+.sectionHeader span {
+    font-size: 1rem;
+    color: #414e5a;
+    font-weight: 400;
+}
+
+.sectionHeader div {
+    margin-bottom: .625rem;
+}
+
+
+.filterSection {
+    padding: 0 0 0 20px;
+    border-top: 1px solid #e5e6e9;
+}
+
+.filterSection .filterKey {
+    margin-bottom: 10px;
+}
+
+.filterSection .filterKey h1{
+    font-size: .75rem;
+    font-weight: 500;
+    color: #718190;
+    margin-bottom: 5px;
+    margin-top: 16px;
+    text-transform: uppercase;
+}
+
+.filterSection .filterValueList {
+    display: flex;
+    color: #414e5a;
+    flex-direction: column;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.filterSection .filterValueList .filterValue {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.filterSection .filterValueList .filterValue h1 {
+    margin-left: 10px;
+    color: #414e5a;
+    font-size: 1rem;
+}
+
+
+.leftBorder {
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid #d8d8d8;
+}
+
+
+
+
+/* Section de la derecha */
+.rightSection {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    padding: 10px 20px;
+}
+
+.rightSection .listingHeader {
+    font-size: .875;
+    font-family: Poppins, sans-serif;
+    border-bottom: 1px solid #e3eaee;
+}
+
+.rightSection .listingHeader .firstHeader {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.rightSection .listingHeader .firstHeader .countHeader {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-shrink: 0;
+    color: #797979;
+    margin: 0 5px 0 0;
+}
+
+.rightSection .listingHeader .firstHeader .countHeader .categoriaName {
+    font-size: 15px;
+    font-weight: 400;
+    color: #414e5a;
+    padding-right: 5px;
+}
+
+.rightSection .listingHeader .firstHeader .countHeader .totalItem {
+    color: #718190;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.rightSection .listingHeader .secondHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}

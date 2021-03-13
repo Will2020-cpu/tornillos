@@ -143,19 +143,21 @@ export default function Home() {
         </div>
 
         {/** Section tornillos */}
-        <div className="mt-10">
+        <div className="mt-10" id="categorias">
           <h1 className="text-customRed uppercase text-4xl text-center">Tornillos</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-6 gap-4">
             {
               tornillos.map(({ nombre, imagen }, i) => (
-                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                  <div>
-                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
-                  </div>
-                  <div className="">
-                    <h1 className={styles.textImage}>{nombre}</h1>
-                  </div>
-                </motion.div>
+                <Link href='/categorias'>
+                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
+                    <div>
+                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
+                    </div>
+                    <div className="">
+                      <h1 className={styles.textImage}>{nombre}</h1>
+                    </div>
+                  </motion.div>
+                </Link>
               ))
             }
           </motion.div>
@@ -203,7 +205,7 @@ export default function Home() {
 
 
         {/* Section Productos */}
-        <motion.div variants={fadeInUp} className="mt-40 relative w-11/12 m-auto">
+        <motion.div variants={fadeInUp} id="productos" className="mt-40 relative w-11/12 m-auto">
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Productos</h1>
           <AliceCarousel
             disableDotsControls
@@ -235,7 +237,7 @@ export default function Home() {
         </div>
 
         {/* Section Sobre nosotros */}
-        <motion.div variants={fadeInUp} className="mt-40 w-11/12 m-auto flex items-center justify-around">
+        <motion.div variants={fadeInUp} id="nosotros" className="mt-40 w-11/12 m-auto flex items-center justify-around">
           <div className="">
             <img src="/about.webp" alt="about" className="h-96" />
           </div>
@@ -246,21 +248,20 @@ export default function Home() {
         </motion.div>
 
         { /* Section Gallery */}
-        <div className="w-11/12 m-auto mt-40">
+        <div className="w-11/12 m-auto mt-40" id="galeria">
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Galeria</h1>
           <MyGallery />
         </div>
 
-
         { /* Section Contacto */}
-        <div className="w-8/12 m-auto mt-40">
+        <div className="w-8/12 m-auto mt-40" id="contacto">
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Contactanos</h1>
           <form className="flex flex-col space-y-8 w-full justify-center">
             <div className="flex space-x-8 w-full justify-center">
               <div className="flex flex-col space-y-4">
                 <input className="border p-2 w-80  focus:outline-none rounded-lg bg-gray-50" placeholder="Nombre Completo" />
                 <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Numero de Telefono" />
-                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Email"/>
+                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Email" />
               </div>
               <div className="flex">
                 <textarea className="border focus:outline-none resize-none rounded-lg w-96 p-2 bg-gray-50" placeholder="Mensaje" />
