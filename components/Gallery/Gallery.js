@@ -16,33 +16,33 @@ const MyGallery = () => {
             <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef} id="first">
                 <div className="grid grid-cols-3 gap-4">
                     <Item
-                        original="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
-                        thumbnail="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
+                        original="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
+                        thumbnail="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
                         width="1024"
                         height="768"
                     >
                         {({ ref, open }) => (
-                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg')" }}></div>
+                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp')" }}></div>
                         )}
                     </Item>
                     <Item
-                        original="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
-                        thumbnail="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
+                        original="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
+                        thumbnail="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
                         width="1024"
                         height="768"
                     >
                         {({ ref, open }) => (
-                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg')" }}></div>
+                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp')" }}></div>
                         )}
                     </Item>
                     <Item
-                        original="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
-                        thumbnail="https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg"
+                        original="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
+                        thumbnail="https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp"
                         width="1024"
                         height="768"
                     >
                         {({ ref, open }) => (
-                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://d2y71a4idrecl2.cloudfront.net/mcdonalds.jpg')" }}></div>
+                            <div ref={ref} className="max-w-sm rounded-lg cursor-pointer h-60 bg-center bg-cover" onClick={open} style={{ backgroundImage: "url('https://image2.jdomni.in/banner/05112020/28/90/12/5AB7C67985EC9CE26FF9509838_1604554998114.webp')" }}></div>
                         )}
                     </Item>
                 </div>

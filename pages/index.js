@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout from '../components/NavBar/Layout'
 import { motion } from 'framer-motion'
-import { pernos, tornillos, tuercas,tornilloBuy } from '../productos'
+import { pernos, tornillos, tuercas, tornilloBuy } from '../productos'
 import AliceCarousel from 'react-alice-carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -49,18 +49,18 @@ const stagger = {
 
 export default function Home() {
 
-  const renderNext = ({ isDisabled }) =>{
-    return(
-      <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{visibility:isDisabled ? 'hidden' : 'visible'}}>
-        <FontAwesomeIcon icon={faAngleRight}/>
+  const renderNext = ({ isDisabled }) => {
+    return (
+      <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
+        <FontAwesomeIcon icon={faAngleRight} />
       </button>
     )
   }
 
-  const renderPrev = ({ isDisabled }) =>{
-    return(
-      <button className="py-2 left-0 border top-1/3 px-4 rounded-full bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none" style={{visibility: isDisabled ? 'hidden' : 'visible'}}>
-        <FontAwesomeIcon icon={faAngleLeft}/>
+  const renderPrev = ({ isDisabled }) => {
+    return (
+      <button className="py-2 left-0 border top-1/3 px-4 rounded-full bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
+        <FontAwesomeIcon icon={faAngleLeft} />
       </button>
     )
   }
@@ -220,14 +220,14 @@ export default function Home() {
           <h1 className="text-customRed uppercase text-4xl text-center">Porque Nosotros</h1>
           <motion.div variants={stagger} className="grid grid-cols-3 gap-4 mt-10">
             {
-              tornilloBuy.map(({ nombre, imagen },i)=>(
+              tornilloBuy.map(({ nombre, imagen }, i) => (
                 <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center space-y-4" key={i}>
-                    <div className="py-1 px-1 border border-customRed rounded-full">
-                      <img src={imagen} alt={nombre} className="h-32"/>
-                    </div>
-                    <div className="">
-                      <h4 className={styles.textImage}>{nombre}</h4>
-                    </div>
+                  <div className="py-1 px-1 border border-customRed rounded-full">
+                    <img src={imagen} alt={nombre} className="h-32" />
+                  </div>
+                  <div className="">
+                    <h4 className={styles.textImage}>{nombre}</h4>
+                  </div>
                 </motion.div>
               ))
             }
@@ -236,19 +236,40 @@ export default function Home() {
 
         {/* Section Sobre nosotros */}
         <motion.div variants={fadeInUp} className="mt-40 w-11/12 m-auto flex items-center justify-around">
-            <div className="">
-              <img src="/about.webp" alt="about" className="h-96"/>
-            </div>
-            <div className="w-5/12">
-              <h1 className="text-customRed uppercase text-3xl text-center">Sobre nosotros</h1>
-              <p>We, zuky tech at in are leading firm engaged in manufacturing impeccable quality nuts, screw and bolts to our honored patrons. Our philosophy is aimed at creating an enriching and fulfilling environment for our employees and maintaining long term relationships with our customers and vendors. Our focus on the future is towards continuous improvement.</p>
-            </div>
+          <div className="">
+            <img src="/about.webp" alt="about" className="h-96" />
+          </div>
+          <div className="w-5/12">
+            <h1 className="text-customRed uppercase text-3xl text-center">Sobre nosotros</h1>
+            <p>We, zuky tech at in are leading firm engaged in manufacturing impeccable quality nuts, screw and bolts to our honored patrons. Our philosophy is aimed at creating an enriching and fulfilling environment for our employees and maintaining long term relationships with our customers and vendors. Our focus on the future is towards continuous improvement.</p>
+          </div>
         </motion.div>
 
-        { /* Section Gallery */ }
+        { /* Section Gallery */}
         <div className="w-11/12 m-auto mt-40">
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Galeria</h1>
-          <MyGallery/>
+          <MyGallery />
+        </div>
+
+
+        { /* Section Contacto */}
+        <div className="w-8/12 m-auto mt-40">
+          <h1 className="text-customRed uppercase text-4xl text-center mb-10">Contactanos</h1>
+          <form className="flex flex-col space-y-8 w-full justify-center">
+            <div className="flex space-x-8 w-full justify-center">
+              <div className="flex flex-col space-y-4">
+                <input className="border p-2 w-80  focus:outline-none rounded-lg bg-gray-50" placeholder="Nombre Completo" />
+                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Numero de Telefono" />
+                <input className="border p-2 w-80 focus:outline-none rounded-lg bg-gray-50" placeholder="Email"/>
+              </div>
+              <div className="flex">
+                <textarea className="border focus:outline-none resize-none rounded-lg w-96 p-2 bg-gray-50" placeholder="Mensaje" />
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="py-1 px-3 rounded-full bg-customRed text-white">Enviar</button>
+            </div>
+          </form>
         </div>
       </Layout>
     </motion.div>
