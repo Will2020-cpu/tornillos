@@ -2,3 +2,10 @@
     height: 90vh;
     background-color: #F2F4F8;   
 }
+
+
+.Title h4 {
+    font-family: Poppins,sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+}

@@ -96,7 +96,7 @@ export default function Categorias() {
                             {/* Section Productos cards */}
                             <AnimateSharedLayout type="crossfade">
                                 <motion.div variants={stagger} className="grid grid-cols-4 gap-4 p-4">
-                                    <Link href='test'>
+                                    <Link href='/[producto]' as={'test'}>
                                         <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                             <div className="border rounded-lg">
                                                 <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src="https://image1.jdomni.in/product/06062019/62/22/DD/1307DF23F8A4097EB9B7C18895_1559810699847.jpg" className="h-90" alt="testing" />

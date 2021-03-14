@@ -3,14 +3,19 @@ import Link from "next/link";
 import Layout from "../components/NavBar/Layout";
 import { useRouter } from 'next/router'
 import styles from '../styles/producto.module.css'
+import Head from 'next/head'
 
 
 export default function Producto() {
     const {
-        query: { product }
+        query: { producto }
     } = useRouter()
+    console.log(producto)
     return (
         <>
+            <Head>
+                <title>{producto}</title>
+            </Head>
             <Layout>
                 <motion.div
                     exit={{ opacity: 0 }}
@@ -20,11 +25,11 @@ export default function Producto() {
                 >
                     <div className="p-2">
                         <div className="p-2 text-sm"><h3>Categorias Tornillos</h3></div>
-                        <div className="bg-white rounded-lg border p-8 shadow-2xl flex space-x-4">
+                        <div className="bg-white rounded-lg w-11/12 m-auto border p-8 shadow-2xl flex space-x-4">
                             <div className="p-4 border rounded-lg max-w-lg">
                                 <img className="h-96" src="https://image1.jdomni.in/product/CC/86/50/A83AF546ADB726F3867EA85CCF_1509609145430.jpg" alt="test" />
                             </div>
-                            <div className="">
+                            <div className={styles.Title}>
                                 <h4>Tonillo XDXDXDahdjkasdghad </h4>
                             </div>
                         </div>
