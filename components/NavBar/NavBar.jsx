@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import Drawer from './Drawer'
 
 
 
@@ -38,6 +39,11 @@ const NavBar = () => {
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Videos</a></Link>
                         <Link href="/#contacto"><a className="text-white hover:text-red-400 transition duration-500">Contacto</a></Link>
                     </nav>
+                    {/* Seccion Movil */}
+                    <div className="h-full flex items-center lg:hidden"> <Link href="/"><a className="text-white" >Logo</a></Link></div>
+                    <div className="h-full flex items-center lg:hidden">
+                        <Drawer/>
+                    </div>
                 </div>
             </div>
         </>
