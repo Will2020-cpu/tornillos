@@ -83,19 +83,17 @@ export default function Categorias() {
                                 <div className={styles.firstHeader}>
                                     <span className={styles.countHeader}>
                                         <span className={styles.categoriaName}>Tornillos</span>
-                                        <div className={styles.totalItem}>
-                                            <span>
-                                                (Mostrando 1 - 36 of 2229 items)
-                                            </span>
-                                        </div>
                                     </span>
+                                    <div>
+                                        <input className="border p-1 rounded w-44 focus:outline-none" placeholder="Buscar"/>
+                                    </div>
                                 </div>
                                 <div className={styles.secondHeader}></div>
                             </div>
 
                             {/* Section Productos cards */}
                             <AnimateSharedLayout type="crossfade">
-                                <motion.div variants={stagger} className="grid grid-cols-4 gap-4 p-4">
+                                <motion.div variants={stagger} className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
                                     <Link href='/[producto]' as={'test'}>
                                         <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                             <div className="border rounded-lg">
