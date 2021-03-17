@@ -26,6 +26,12 @@ a {
   box-sizing: border-box;
 }
 
+.contenedor {
+  min-height: calc(100vh - 300px - 100px);
+  padding-bottom: 20px;
+}
+
+
 .heroBanner{
   font-family: 'Didact Gothic', sans-serif;
 }

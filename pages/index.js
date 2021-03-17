@@ -48,7 +48,6 @@ const stagger = {
 
 
 const Home = (props) => {
-  console.log(props.productos)
   const renderNext = ({ isDisabled }) => {
     return (
       <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
