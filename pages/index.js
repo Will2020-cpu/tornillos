@@ -105,7 +105,7 @@ const Home = (props) => {
               props.categoriasTornillos !== undefined ? (
                 props.categoriasTornillos.map((item) => (
                   <Link href={{ path: '/categorias/[categorias]', pathname: `/categorias/${item.nombre}`, query: { id: item.id, categorias: item.nombre } }} key={item.id}>
-                    <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" >
+                    <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer flex flex-col items-center justify-center space-y-2" >
                       <div>
                         <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} alt={item.nombre} className="h-44" />
                       </div>
@@ -131,14 +131,16 @@ const Home = (props) => {
               props.categoriasTuercas !== undefined ? (
 
                 props.categoriasTuercas.map((item) => (
-                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={item.id}>
-                    <div>
-                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} alt={item.nombre} className="h-44" />
-                    </div>
-                    <div>
-                      <h1 className={styles.textImage}>{item.nombre}</h1>
-                    </div>
-                  </motion.div>
+                  <Link href={{ path: '/categorias/[categorias]', pathname: `/categorias/${item.nombre}`, query: { id: item.id, categorias: item.nombre } }} key={item.id} >
+                    <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer flex flex-col items-center justify-center space-y-2" key={item.id}>
+                      <div>
+                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} alt={item.nombre} className="h-44" />
+                      </div>
+                      <div>
+                        <h1 className={styles.textImage}>{item.nombre}</h1>
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))
               ) : (
                 <div className="">Admin debes agregar una categoria de tuercas</div>
@@ -154,14 +156,16 @@ const Home = (props) => {
             {
               props.categoriasPernos !== undefined ? (
                 props.categoriasPernos.map((item) => (
-                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={item.id}>
-                    <div>
-                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-44" alt={item.nombre} />
-                    </div>
-                    <div>
-                      <h1 className={styles.textImage}>{item.nombre}</h1>
-                    </div>
-                  </motion.div>
+                  <Link href={{ path: '/categorias/[categorias]', pathname: `/categorias/${item.nombre}`, query: { id: item.id, categorias: item.nombre } }}>
+                    <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer flex flex-col items-center justify-center space-y-2" key={item.id}>
+                      <div>
+                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-44" alt={item.nombre} />
+                      </div>
+                      <div>
+                        <h1 className={styles.textImage}>{item.nombre}</h1>
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))
               ) : (
                 null
