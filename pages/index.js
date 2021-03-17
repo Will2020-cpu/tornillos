@@ -47,8 +47,8 @@ const stagger = {
 }
 
 
-export default function Home() {
-
+const Home = (props) => {
+  console.log(props.productos)
   const renderNext = ({ isDisabled }) => {
     return (
       <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
@@ -66,64 +66,19 @@ export default function Home() {
   }
 
   const items = [
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
-    <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-      <div className="max-w-xs">
-        <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-      </div>
-      <div>
-        <h1 className={styles.textImage}>Producto</h1>
-      </div>
-    </motion.div>,
+    props.productos.length > 0 ? (
+      <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
+        <div className="max-w-xs">
+          <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
+        </div>
+        <div>
+          <h1 className={styles.textImage}>Producto</h1>
+        </div>
+      </motion.div>
+    ) : (
+      null
+    )
   ]
-
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -143,69 +98,81 @@ export default function Home() {
         </div>
 
         {/** Section tornillos */}
-        <div className="mt-10" id="categorias">
+        <div className={`${props.categoriasTornillos === undefined || props.categoriasTornillos.length === 0 ? "hidden" : "mt-10"}`} id="categorias">
           <h1 className="text-customRed uppercase text-4xl text-center">Tornillos</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-1 lg:grid-cols-6 gap-4">
             {
-              tornillos.map(({ nombre, imagen }, i) => (
-                <Link href='/categorias' key={i}>
-                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" >
-                    <div>
-                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
-                    </div>
-                    <div className="">
-                      <h1 className={styles.textImage}>{nombre}</h1>
-                    </div>
-                  </motion.div>
-                </Link>
-              ))
+              props.categoriasTornillos !== undefined ? (
+                props.categoriasTornillos.map((item) => (
+                  <Link href={{ path: '/categorias/[categorias]', pathname: `/categorias/${item.nombre}`, query: { id: item.id, categorias: item.nombre } }} key={item.id}>
+                    <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" >
+                      <div>
+                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} alt={item.nombre} className="h-44" />
+                      </div>
+                      <div className="">
+                        <h1 className={styles.textImage}>{item.nombre}</h1>
+                      </div>
+                    </motion.div>
+                  </Link>
+                ))
+              ) : (
+                <div className="">Admin debes agregar una categoria de tornillos</div>
+              )
             }
           </motion.div>
         </div>
 
 
         {/* Section Tuercas */}
-        <div className="mt-40">
+        <div className={`${props.categoriasTuercas === undefined || props.categoriasTuercas.length === 0 ? "hidden" : "mt-40"}`}>
           <h1 className="text-customRed uppercase text-4xl text-center">Tuercas</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12  m-auto grid-cols-1 grid lg:grid-cols-6 gap-4">
             {
-              tuercas.map(({ nombre, imagen }, i) => (
-                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                  <div>
-                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} alt={nombre} className="h-44" />
-                  </div>
-                  <div>
-                    <h1 className={styles.textImage}>{nombre}</h1>
-                  </div>
-                </motion.div>
-              ))
+              props.categoriasTuercas !== undefined ? (
+
+                props.categoriasTuercas.map((item) => (
+                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={item.id}>
+                    <div>
+                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} alt={item.nombre} className="h-44" />
+                    </div>
+                    <div>
+                      <h1 className={styles.textImage}>{item.nombre}</h1>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="">Admin debes agregar una categoria de tuercas</div>
+              )
             }
           </motion.div>
         </div>
 
-
         { /* Section Pernos */}
-        <div className="mt-40">
+        <div className={`${props.categoriasPernos === undefined || props.categoriasPernos.length === 0 ? "hidden" : "mt-40"}`}>
           <h1 className="text-customRed uppercase text-4xl text-center">Pernos</h1>
           <motion.div variants={stagger} className="mt-10 w-11/12 m-auto grid grid-cols-1 lg:grid-cols-6 gap-4">
             {
-              pernos.map(({ nombre, imagen }, i) => (
-                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={i}>
-                  <div>
-                    <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={imagen} className="h-44" />
-                  </div>
-                  <div>
-                    <h1 className={styles.textImage}>{nombre}</h1>
-                  </div>
-                </motion.div>
-              ))
+              props.categoriasPernos !== undefined ? (
+                props.categoriasPernos.map((item) => (
+                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-col items-center justify-center space-y-2" key={item.id}>
+                    <div>
+                      <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-44" alt={item.nombre} />
+                    </div>
+                    <div>
+                      <h1 className={styles.textImage}>{item.nombre}</h1>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                null
+              )
             }
           </motion.div>
         </div>
 
 
         {/* Section Productos */}
-        <motion.div variants={fadeInUp} id="productos" className="mt-40 relative w-11/12 m-auto">
+        <motion.div variants={fadeInUp} id="productos" className={`${props.productos.length === 0 ? "hidden" : "mt-40 relative w-11/12 m-auto"}`}>
           <h1 className="text-customRed uppercase text-4xl text-center mb-10">Productos</h1>
           <AliceCarousel
             disableDotsControls
@@ -277,3 +244,32 @@ export default function Home() {
     </motion.div>
   )
 }
+
+
+
+
+Home.getInitialProps = async function () {
+  const resCategorias = await fetch(
+    "http://localhost:5000/api/categorias"
+  )
+  const resProductos = await fetch(
+    "http://localhost:5000/api/productos"
+  )
+  const dataCategorias = await resCategorias.json()
+  const dataProductos = await resProductos.json()
+
+  const dataCategoriasTornillos = dataCategorias.filter(item => item.tipo === 'Tornillos')
+  const dataCategoriasTuercas = dataCategorias.filter(item => item.tipo === 'Tuercas')
+  const dataCategoriasPernos = dataCategorias.filter(item => item.tipo === 'Pernos')
+
+  return {
+    categoriasTornillos: dataCategoriasTornillos,
+    categoriasTuercas: dataCategoriasTuercas,
+    categoriasPernos: dataCategoriasPernos,
+
+    productos: dataProductos
+  }
+}
+
+
+export default Home;

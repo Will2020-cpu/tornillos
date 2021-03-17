@@ -41,14 +41,6 @@
     margin-bottom: 10px;
 }
 
-.filterSection .filterKey h1{
-    font-size: .75rem;
-    font-weight: 500;
-    color: #718190;
-    margin-bottom: 5px;
-    margin-top: 16px;
-    text-transform: uppercase;
-}
 
 .filterSection .filterValueList {
     display: flex;
