@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
             </div>
             <footer className="w-full heroBanner bg-gray-50">
                 <div className="">
-                    <div className="grid grid-cols-4 gap-4 mb-2 border-b p-8 w-11/12 m-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-2 border-b p-8 w-full lg:w-11/12 m-auto">
                         <div className="">
                             <h1 className="font-bold uppercase">Enlaces disponibles</h1>
                             <ul>

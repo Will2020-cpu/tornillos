@@ -6,10 +6,12 @@ class MyDocument extends Document {
       <Html lang="es">
         <Head>
           <meta name="description" content="Venta de Tornilleria Cartagena" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <div id="modal-root"></div>
         </body>
       </Html>
     );

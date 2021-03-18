@@ -8,6 +8,8 @@ import AliceCarousel from 'react-alice-carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import MyGallery from '../components/Gallery/Gallery'
+import ContentModal from '../components/ContentModal/ContentModal'
+import { useState } from 'react'
 
 
 
@@ -48,6 +50,7 @@ const stagger = {
 
 
 const Home = (props) => {
+  const [showModal, setShowModal] = useState(false)
   const renderNext = ({ isDisabled }) => {
     return (
       <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
@@ -86,13 +89,14 @@ const Home = (props) => {
     >
       <Head>
         <title>Zuky Tornillos</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <div className={styles.hero}>
           <motion.div variants={fadeInUp} className={styles.text}>
             <h1>Gama completa de tuercas, Tornillos y pernos</h1>
-            <Link href='/'><a className="py-2  bg-customRed rounded-full px-3 text-white">Pedir al por mayor</a></Link>
+            <ContentModal>
+              <button className="py-2  bg-customRed rounded-full px-3 focus:outline-none text-white">Pedir al por mayor</button>
+            </ContentModal>
           </motion.div>
         </div>
 
@@ -208,9 +212,9 @@ const Home = (props) => {
         </div>
 
         {/* Section Sobre nosotros */}
-        <motion.div variants={fadeInUp} id="nosotros" className="mt-40 w-11/12 m-auto flex flex-col lg:flex-row items-center justify-around">
+        <motion.div variants={fadeInUp} id="nosotros" className="heroBanner mt-40 w-11/12 m-auto flex flex-col lg:flex-row items-center justify-around">
           <div className="">
-            <img src="/about.webp" alt="about" className="h-96" />
+            <img src="/about.webp" alt="about" className="h-52 lg:h-96" />
           </div>
           <div className="w-full lg:w-5/12">
             <h1 className="text-customRed uppercase text-3xl text-center">Sobre nosotros</h1>

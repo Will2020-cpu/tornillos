@@ -43,7 +43,6 @@ const Categorias = (props) => {
         <>
             <Head>
                 <title>{categorias}</title>
-                <link rel="icon" href="/favicon.ico" />
             </Head>
             <Layout>
                 <motion.div
@@ -117,13 +116,14 @@ const Categorias = (props) => {
                                 <motion.div variants={stagger} className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
                                     {
                                         props.productos.map(item => (
-                                            <Link href='/productos/[producto]' as={'/productos/test'} key={item.id}>
+                                            <Link href={{ path:'/productos/[producto]', pathname:`/productos/${item.nombre}`, query:{id:item.id, producto:item.nombre } }} key={item.id}>
                                                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                                     <div className="border rounded-lg">
                                                         <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
                                                     </div>
-                                                    <div className="">
-                                                        <h4 className="overflow-ellipsis overflow-hidden break-normal">{item.nombre}</h4>
+                                                    <div className="flex justify-between">
+                                                        <h4 className="overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
+                                                        <span className="text-customRed text-sm">$ {item.precio}</span>
                                                     </div>
                                                 </motion.div>
                                             </Link>

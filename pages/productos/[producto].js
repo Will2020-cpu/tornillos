@@ -36,11 +36,12 @@ const stagger = {
 
 
 
-export default function Producto() {
+const  Producto = (props) => {
+    const { query:{ producto } } = useRouter();
     return (
         <>
             <Head>
-                <title>test</title>
+                <title>{producto}</title>
             </Head>
             <Layout>
                 <motion.div
@@ -56,7 +57,7 @@ export default function Producto() {
                             </div>
                             <div className="flex flex-col space-y-4 w-2/3">
                                 <div className={`${styles.Title}`}>
-                                    <h4 className="overflow-hidden">TVS Socket Countersunk Head Cap Screws Of M10 Dia & 50 Mm Length</h4>
+                                    <h4 className="overflow-hidden">{props.producto[0].nombre}</h4>
                                 </div>
                                 <div className="mt-10">
                                     <button className="py-2 px-8 bg-customRed rounded text-white focus:outline-none">Comprar Ahora</button>
@@ -72,10 +73,10 @@ export default function Producto() {
                                             <li className="text-gray-500 text-sm">Diametro :</li>
                                         </ul>
                                         <ul className="space-y-6">
-                                            <li className="text-sm text-black font-medium">Tipo</li>
-                                            <li className="text-sm text-black font-medium">Marca</li>
-                                            <li className="text-sm text-black font-medium">Largo</li>
-                                            <li className="text-sm text-black font-medium">Diametro</li>
+                                            <li className="text-sm text-black font-medium">{props.datoTipo[0].nombre} </li>
+                                            <li className="text-sm text-black font-medium">{props.producto[0].marca}</li>
+                                            <li className="text-sm text-black font-medium">{props.producto[0].largo}</li>
+                                            <li className="text-sm text-black font-medium">{props.producto[0].diametro}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -109,3 +110,26 @@ export default function Producto() {
         </>
     )
 }
+
+
+
+
+Producto.getInitialProps = async function(context){
+    const { id } = context.query;
+    const resProductos = await fetch(
+        `http://localhost:5000/api/productos/${id}`
+    )
+    const datoRes = await resProductos.json()
+    const datoTipo = await fetch(
+        `http://localhost:5000/api/categorias/${datoRes[0].fk_categorias}`
+    )  
+
+    const datosCategoria = await datoTipo.json()
+    return{
+        producto : datoRes,
+        datoTipo: datosCategoria
+    }
+}
+
+
+export default Producto

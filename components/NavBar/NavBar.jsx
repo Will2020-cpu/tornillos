@@ -25,7 +25,7 @@ const NavBar = () => {
                     </nav>
                 </div>
             </div>
-            <div className="bg-customGray top-0 sticky z-50">
+            <div className="bg-customGray top-0 sticky z-20">
                 <div className="h-14 w-11/12 m-auto flex justify-between">
                     <nav className="h-full hidden lg:flex items-center  nav uppercase space-x-4">
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Inicio</a></Link>
