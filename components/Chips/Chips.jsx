@@ -9,7 +9,7 @@ const Chips = ({ nombre }) => {
             style={{ margin:2 }}
             label={nombre}
             color="primary"
-            clickeable
+            clickable
             size="small"
         />
     )

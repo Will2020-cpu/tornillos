@@ -5,6 +5,8 @@ import styles from '../../styles/categorias.module.css'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Chips from '../../components/Chips/Chips';
+import { useState } from 'react';
+import { Chip } from '@material-ui/core';
 
 
 const easing = [0.6, -0.05, 0.01, 0.99]
@@ -67,20 +69,27 @@ const Categorias = (props) => {
                                     <h1 className="font-medium text-black text-sm my-2 border-b">Diametro</h1>
                                 </div>
                                 <div className={styles.filterValueList}>
-                                    <label className={styles.filterValue}>
+                                    <div className={styles.filterValue}>
                                         {
-                                            props.tipos.map(item => (
-                                                <Chips nombre={`${item.diametro} mm`} />
+                                            props.tipos.map(item=>(
+                                                <Chip
+                                                    label={item.diametro}
+                                                    color="primary"
+                                                    style={{ margin:2 }}
+                                                    clickable
+                                                    size="small"
+                                                    key={item.id}
+                                                />
                                             ))
                                         }
-                                    </label>
+                                    </div>
                                 </div>
                                 <div className={styles.filterValueList}>
                                     <h1 className="font-medium text-black text-sm my-2 border-b">Largo</h1>
                                     <label className={styles.filterValue}>
                                         {
                                             props.tipos.map(item => (
-                                                <Chips nombre={item.largo} />
+                                                <Chips nombre={item.largo} key={item.id}/>
                                             ))
                                         }
                                     </label>
@@ -90,7 +99,7 @@ const Categorias = (props) => {
                                     <label className={styles.filterValue}>
                                         {
                                             props.tipos.map(item => (
-                                                <Chips nombre={item.marca} />
+                                                <Chips nombre={item.marca} key={item.id}/>
                                             ))
                                         }
                                     </label>
@@ -117,13 +126,13 @@ const Categorias = (props) => {
                                     {
                                         props.productos.map(item => (
                                             <Link href={{ path:'/productos/[producto]', pathname:`/productos/${item.nombre}`, query:{id:item.id, producto:item.nombre } }} key={item.id}>
-                                                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
+                                                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                                     <div className="border rounded-lg">
                                                         <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
                                                     </div>
-                                                    <div className="flex justify-between">
-                                                        <h4 className="overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
-                                                        <span className="text-customRed text-sm">$ {item.precio}</span>
+                                                    <div className="flex justify-between items-center">
+                                                        <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
+                                                        <span className="text-customRed text-sm heroBanner">$ {item.precio}</span>
                                                     </div>
                                                 </motion.div>
                                             </Link>

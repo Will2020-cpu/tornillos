@@ -52,7 +52,8 @@
 
 .filterSection .filterValueList .filterValue {
     font-weight: 400;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
     align-items: center;
     max-width: 100%;
     margin-bottom: 5px;
