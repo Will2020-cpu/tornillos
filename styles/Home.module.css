@@ -32,6 +32,9 @@
     color: #333333;
     text-align: center;
     transition: ease 0.2s color;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    break-inside: normal;
 }
 
 .textImage:hover{

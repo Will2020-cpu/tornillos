@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import MyGallery from '../components/Gallery/Gallery'
 import ContentModal from '../components/ContentModal/ContentModal'
-import { useState } from 'react'
+
 
 
 
@@ -19,7 +19,7 @@ const easing = [0.6, -0.05, 0.01, 0.99]
 const responsive = {
   0: { items: 1 },
   568: { items: 2 },
-  1024: { items: 6 }
+  1024: { items: 5 }
 }
 
 
@@ -50,7 +50,6 @@ const stagger = {
 
 
 const Home = (props) => {
-  const [showModal, setShowModal] = useState(false)
   const renderNext = ({ isDisabled }) => {
     return (
       <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
@@ -67,20 +66,22 @@ const Home = (props) => {
     )
   }
 
-  const items = [
-    props.productos.length > 0 ? (
-      <motion.div variants={fadeInUp} className="flex flex-col justify-center items-center">
-        <div className="max-w-xs">
-          <motion.img className="h-52" src="https://image1.jdomni.in/product/25012018/96/2A/03/4201CD70C947C5ADEE0BBB7508_1516876426055.jpg?fit=around|400:400" alt="test" />
-        </div>
-        <div>
-          <h1 className={styles.textImage}>Producto</h1>
-        </div>
-      </motion.div>
-    ) : (
-      null
+  const items = props.productos.map((item) => {
+    return (
+      <Link href={{ path: '/productos/[producto]', pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
+        <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
+          <div className="border rounded-lg">
+            <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
+          </div>
+          <div className="flex justify-between items-center">
+            <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
+            <span className="text-customRed text-sm heroBanner">$ {item.precio}</span>
+          </div>
+        </motion.div>
+      </Link>
     )
-  ]
+  })
+
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -260,7 +261,7 @@ Home.getInitialProps = async function () {
     "http://localhost:5000/api/categorias"
   )
   const resProductos = await fetch(
-    "http://localhost:5000/api/productos"
+    "http://localhost:5000/api/productos/cantidad/productos"
   )
   const dataCategorias = await resCategorias.json()
   const dataProductos = await resProductos.json()

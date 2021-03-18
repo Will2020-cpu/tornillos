@@ -4,6 +4,9 @@ import Layout from "../../components/NavBar/Layout";
 import { useRouter } from 'next/router'
 import styles from '../../styles/producto.module.css'
 import Head from 'next/head'
+import AliceCarousel from 'react-alice-carousel'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const easing = [0.6, -0.05, 0.01, 0.99]
@@ -34,10 +37,49 @@ const stagger = {
     }
 }
 
+const responsive = {
+    0: { items: 1 },
+    568: { items: 2 },
+    1024: { items: 5 }
+  }
+  
+  
 
 
 const Producto = (props) => {
     const { query: { producto } } = useRouter();
+    
+    const renderNext = ({ isDisabled }) => {
+        return (
+            <button className="py-2 px-4 rounded-full right-0 border top-1/3 bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none transition duration-500" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
+                <FontAwesomeIcon icon={faAngleRight} />
+            </button>
+        )
+    }
+
+    const renderPrev = ({ isDisabled }) => {
+        return (
+            <button className="py-2 left-0 border top-1/3 px-4 rounded-full bg-white absolute shadow-lg text-black hover:text-white hover:bg-gray-800 focus:outline-none" style={{ visibility: isDisabled ? 'hidden' : 'visible' }}>
+                <FontAwesomeIcon icon={faAngleLeft} />
+            </button>
+        )
+    }
+
+    const items = props.productos.map((item) => {
+        return (
+            <Link  href={{ path: '/productos/[producto]',  pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
+                <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
+                    <div className="border rounded-lg">
+                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt={item.nombre} />
+                    </div>
+                    <div className="flex justify-between items-center">
+                        <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
+                        <span className="text-customRed text-sm heroBanner">$ {item.precio}</span>
+                    </div>
+                </motion.div>
+            </Link>
+        )
+    })
     return (
         <>
             <Head>
@@ -91,17 +133,15 @@ const Producto = (props) => {
                             </div>
 
                             <AnimateSharedLayout type="crossfade">
-                                <motion.div variants={stagger} className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
-                                    <Link href='/productos/[producto]' as={'/productos/test'}>
-                                        <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
-                                            <div className="border rounded-lg">
-                                                <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src="https://image1.jdomni.in/product/06062019/62/22/DD/1307DF23F8A4097EB9B7C18895_1559810699847.jpg" className="h-90" alt="testing" />
-                                            </div>
-                                            <div className="">
-                                                <h4 className="overflow-ellipsis overflow-hidden break-normal">Tornilloalsudhasdgasjhdhasdahsdahsdasdgfasdgfgad</h4>
-                                            </div>
-                                        </motion.div>
-                                    </Link>
+                                <motion.div variants={fadeInUp} id="productos" className={`${props.productos.length === 0 ? "hidden" : "relative w-11/12 m-auto"}`}>
+                                    <AliceCarousel
+                                        disableDotsControls
+                                        items={items}
+                                        responsive={responsive}
+                                        renderNextButton={renderNext}
+                                        renderPrevButton={renderPrev}
+                                        className=""
+                                    />
                                 </motion.div>
                             </AnimateSharedLayout>
                         </div>
@@ -117,18 +157,27 @@ const Producto = (props) => {
 
 Producto.getInitialProps = async function (context) {
     const { id } = context.query;
-    const resProductos = await fetch(
+    const resProductosTen = await fetch(
+        'http://localhost:5000/api/productos/cantidad/productos'
+    )
+
+
+    const resProducto = await fetch(
         `http://localhost:5000/api/productos/${id}`
     )
-    const datoRes = await resProductos.json()
+
+
+    const datoRes = await resProducto.json()
     const datoTipo = await fetch(
         `http://localhost:5000/api/categorias/${datoRes[0].fk_categorias}`
     )
 
     const datosCategoria = await datoTipo.json()
+    const datosProductos = await resProductosTen.json()
     return {
         producto: datoRes,
-        datoTipo: datosCategoria
+        datoTipo: datosCategoria,
+        productos: datosProductos
     }
 }
 

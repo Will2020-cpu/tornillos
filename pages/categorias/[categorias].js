@@ -71,14 +71,14 @@ const Categorias = (props) => {
                                 <div className={styles.filterValueList}>
                                     <div className={styles.filterValue}>
                                         {
-                                            props.tipos.map(item=>(
+                                            props.tipos.map((item, i) => (
                                                 <Chip
                                                     label={item.diametro}
                                                     color="primary"
-                                                    style={{ margin:2 }}
+                                                    style={{ margin: 2 }}
                                                     clickable
                                                     size="small"
-                                                    key={item.id}
+                                                    key={i}
                                                 />
                                             ))
                                         }
@@ -88,8 +88,15 @@ const Categorias = (props) => {
                                     <h1 className="font-medium text-black text-sm my-2 border-b">Largo</h1>
                                     <label className={styles.filterValue}>
                                         {
-                                            props.tipos.map(item => (
-                                                <Chips nombre={item.largo} key={item.id}/>
+                                            props.tipos.map((item, i) => (
+                                                <Chip
+                                                    label={item.largo}
+                                                    color="primary"
+                                                    style={{ margin: 2 }}
+                                                    clickable
+                                                    size="small"
+                                                    key={i}
+                                                />
                                             ))
                                         }
                                     </label>
@@ -98,8 +105,15 @@ const Categorias = (props) => {
                                     <h1 className="font-medium text-black text-sm mb-2 border-b">Marca</h1>
                                     <label className={styles.filterValue}>
                                         {
-                                            props.tipos.map(item => (
-                                                <Chips nombre={item.marca} key={item.id}/>
+                                            props.tipos.map((item, i) => (
+                                                <Chip
+                                                    label={item.marca}
+                                                    color="primary"
+                                                    style={{ margin: 2 }}
+                                                    clickable
+                                                    size="small"
+                                                    key={i}
+                                                />
                                             ))
                                         }
                                     </label>
@@ -125,10 +139,10 @@ const Categorias = (props) => {
                                 <motion.div variants={stagger} className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
                                     {
                                         props.productos.map(item => (
-                                            <Link href={{ path:'/productos/[producto]', pathname:`/productos/${item.nombre}`, query:{id:item.id, producto:item.nombre } }} key={item.id}>
+                                            <Link href={{ path: '/productos/[producto]', pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
                                                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                                     <div className="border rounded-lg">
-                                                        <motion.img layoutId="test" initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
+                                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
                                                     </div>
                                                     <div className="flex justify-between items-center">
                                                         <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
