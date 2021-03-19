@@ -4,8 +4,6 @@ import Layout from '../../components/NavBar/Layout'
 import styles from '../../styles/categorias.module.css'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import Chips from '../../components/Chips/Chips';
-import { useState } from 'react';
 import { Chip } from '@material-ui/core';
 
 
@@ -41,6 +39,7 @@ const stagger = {
 
 const Categorias = (props) => {
     const { query: { categorias } } = useRouter()
+    const router = useRouter()
     return (
         <>
             <Head>
@@ -71,15 +70,16 @@ const Categorias = (props) => {
                                 <div className={styles.filterValueList}>
                                     <div className={styles.filterValue}>
                                         {
-                                            props.tipos.map((item, i) => (
-                                                <Chip
-                                                    label={item.diametro}
-                                                    color="primary"
-                                                    style={{ margin: 2 }}
-                                                    clickable
-                                                    size="small"
-                                                    key={i}
-                                                />
+                                            props.tipos.diametro.map((item, i) => (
+                                                <Link  href={{path:'/categorias/[categorias]', pathname:`/categorias/${categorias}`, query:{id:router.query.id, categorias:router.query.categorias, filter_diametro: item.diametro} }} key={i}>
+                                                    <Chip
+                                                        label={item.diametro}
+                                                        color="primary"
+                                                        style={{ margin: 2 }}
+                                                        clickable
+                                                        size="small"
+                                                    />
+                                                </Link>
                                             ))
                                         }
                                     </div>
@@ -88,7 +88,7 @@ const Categorias = (props) => {
                                     <h1 className="font-medium text-black text-sm my-2 border-b">Largo</h1>
                                     <label className={styles.filterValue}>
                                         {
-                                            props.tipos.map((item, i) => (
+                                            props.tipos.largo.map((item, i) => (
                                                 <Chip
                                                     label={item.largo}
                                                     color="primary"
@@ -105,7 +105,7 @@ const Categorias = (props) => {
                                     <h1 className="font-medium text-black text-sm mb-2 border-b">Marca</h1>
                                     <label className={styles.filterValue}>
                                         {
-                                            props.tipos.map((item, i) => (
+                                            props.tipos.marca.map((item, i) => (
                                                 <Chip
                                                     label={item.marca}
                                                     color="primary"
@@ -163,7 +163,24 @@ const Categorias = (props) => {
 }
 
 Categorias.getInitialProps = async function (context) {
-    const { id } = context.query;
+    const { id,filter_diametro } = context.query;
+    if(filter_diametro !== undefined){
+        const productosDiametro = await fetch(
+            `http://localhost:5000/api/tipos/categoria/${id}?filter_diametro=${filter_diametro}`,
+        )
+        const resTipos = await fetch(
+            `http://localhost:5000/api/tipos/${id}/`
+        )
+        const dataTipos = await resTipos.json();
+
+        const productosDiametroRes = await productosDiametro.json()
+        return{
+            productos: productosDiametroRes,
+            tipos:dataTipos,
+        }        
+    }
+
+
     const resProductos = await fetch(
         `http://localhost:5000/api/productos/categoria/${id}`
     )
@@ -175,7 +192,7 @@ Categorias.getInitialProps = async function (context) {
     const dataTipos = await resTipos.json();
     return {
         productos: dataProductos,
-        tipos: dataTipos
+        tipos: dataTipos,
     }
 }
 
