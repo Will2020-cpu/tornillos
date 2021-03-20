@@ -5,6 +5,9 @@ import styles from '../../styles/categorias.module.css'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { Chip } from '@material-ui/core';
+import { getRouterInicial, getRouterMarca } from '../../helpers/Filter'
+import { FilterLlamadas } from '../../helpers/res'
+
 
 
 const easing = [0.6, -0.05, 0.01, 0.99]
@@ -37,13 +40,14 @@ const stagger = {
 
 
 
+
+
 const Categorias = (props) => {
-    const { query: { categorias } } = useRouter()
     const router = useRouter()
     return (
         <>
             <Head>
-                <title>{categorias}</title>
+                <title>{router.query.categorias}</title>
             </Head>
             <Layout>
                 <motion.div
@@ -53,7 +57,7 @@ const Categorias = (props) => {
                     className="mt-2"
                 >
                     <div className="p-1">
-                        <h1 className="text-gray-400 text-sm">Categoria <span className="text-black font-medium">{categorias}</span></h1>
+                        <h1 className="text-gray-400 text-sm">Categoria <span className="text-black font-medium">{router.query.categorias}</span></h1>
                     </div>
 
                     {/* Section left */}
@@ -71,7 +75,7 @@ const Categorias = (props) => {
                                     <div className={styles.filterValue}>
                                         {
                                             props.tipos.diametro.map((item, i) => (
-                                                <Link  href={{path:'/categorias/[categorias]', pathname:`/categorias/${categorias}`, query:{id:router.query.id, categorias:router.query.categorias, filter_diametro: item.diametro} }} key={i}>
+                                                <Link href={getRouterInicial(item.diametro)} key={i}>
                                                     <Chip
                                                         label={item.diametro}
                                                         color="primary"
@@ -89,14 +93,16 @@ const Categorias = (props) => {
                                     <label className={styles.filterValue}>
                                         {
                                             props.tipos.largo.map((item, i) => (
-                                                <Chip
+                                                <Link  href={{ path:"/categorias/[categorias]", pathname:`/categorias/${router.query.categorias}`, query:{id:router.query.id,filter_largo:item.largo, filter_diametro:router.query.filter_diametro, filter_marca:router.query.filter_marca}}} key={i}>
+                                                    <Chip
                                                     label={item.largo}
                                                     color="primary"
                                                     style={{ margin: 2 }}
                                                     clickable
                                                     size="small"
-                                                    key={i}
+                                                   
                                                 />
+                                                </Link>
                                             ))
                                         }
                                     </label>
@@ -106,14 +112,15 @@ const Categorias = (props) => {
                                     <label className={styles.filterValue}>
                                         {
                                             props.tipos.marca.map((item, i) => (
-                                                <Chip
-                                                    label={item.marca}
-                                                    color="primary"
-                                                    style={{ margin: 2 }}
-                                                    clickable
-                                                    size="small"
-                                                    key={i}
-                                                />
+                                                <Link href={getRouterMarca(item.marca)} key={i}>
+                                                    <Chip
+                                                        label={item.marca}
+                                                        color="primary"
+                                                        style={{ margin: 2 }}
+                                                        clickable
+                                                        size="small"
+                                                    />
+                                                </Link>
                                             ))
                                         }
                                     </label>
@@ -142,7 +149,7 @@ const Categorias = (props) => {
                                             <Link href={{ path: '/productos/[producto]', pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
                                                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                                     <div className="border rounded-lg">
-                                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt="testing" />
+                                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt={item.nombre} />
                                                     </div>
                                                     <div className="flex justify-between items-center">
                                                         <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
@@ -163,35 +170,37 @@ const Categorias = (props) => {
 }
 
 Categorias.getInitialProps = async function (context) {
-    const { id,filter_diametro } = context.query;
-    if(filter_diametro !== undefined){
-        const productosDiametro = await fetch(
-            `http://localhost:5000/api/tipos/categoria/${id}?filter_diametro=${filter_diametro}`,
+    const { id, filter_diametro, filter_largo, filter_marca } = context.query;
+    const resTipos = await fetch(
+        `http://localhost:5000/api/tipos/${id}/`
+    )
+    const dataTipos = await resTipos.json();
+    if (filter_diametro !== undefined || filter_largo !== undefined || filter_marca !== undefined) {
+        const resProductos = await fetch(
+            `http://localhost:5000/api/tipos/categoria/${id}?filter_diametro=${filter_diametro}&filter_marca=${filter_marca}&filter_largo=${filter_largo}`,
         )
-        const resTipos = await fetch(
-            `http://localhost:5000/api/tipos/${id}/`
-        )
-        const dataTipos = await resTipos.json();
+        const datos = await resProductos.json()
+        const datosFilterLargo = dataTipos.largo.filter(item => item.largo !== filter_largo)
+        const datosFilterMarca = dataTipos.marca.filter(item => item.marca !== filter_marca)
+        const datosFilterDiametro = dataTipos.diametro.filter(item => item.diametro !== filter_diametro)
 
-        const productosDiametroRes = await productosDiametro.json()
+        const objeto = {
+            marca: datosFilterMarca,
+            largo:datosFilterLargo,
+            diametro: datosFilterDiametro
+        }
         return{
-            productos: productosDiametroRes,
-            tipos:dataTipos,
-        }        
+            productos: datos,
+            tipos:objeto,
+        }
     }
-
 
     const resProductos = await fetch(
         `http://localhost:5000/api/productos/categoria/${id}`
     )
-    const resTipos = await fetch(
-        `http://localhost:5000/api/tipos/${id}`
-    )
-
-    const dataProductos = await resProductos.json()
-    const dataTipos = await resTipos.json();
+    const datos = await resProductos.json()
     return {
-        productos: dataProductos,
+        productos: datos,
         tipos: dataTipos,
     }
 }
