@@ -149,7 +149,7 @@ const Categorias = (props) => {
                                             <Link href={{ path: '/productos/[producto]', pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
                                                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                                                     <div className="border rounded-lg">
-                                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-90" alt={item.nombre} />
+                                                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-60 object-cover" alt={item.nombre} />
                                                     </div>
                                                     <div className="flex justify-between items-center">
                                                         <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
