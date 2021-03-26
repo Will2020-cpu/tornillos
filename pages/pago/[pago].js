@@ -43,7 +43,7 @@ Pago.getInitialProps = async function (context) {
         producto:pago
     }
      await fetch(
-        `http://localhost:5000/api/clientes/add`,{
+        `https://hidden-mesa-67260.herokuapp.com/api/clientes/add`,{
             method:'POST',
             body:JSON.stringify(newCliente),
             headers:{
@@ -52,7 +52,7 @@ Pago.getInitialProps = async function (context) {
         }
     )
     await fetch(
-        `http://localhost:5000/services/notificaciones/new-message`,{
+        `https://hidden-mesa-67260.herokuapp.com/services/notificaciones/new-message`,{
             method:'POST',
             body:JSON.stringify({message:'Nuevo Cliente'}),
             headers:{

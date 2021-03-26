@@ -168,18 +168,18 @@ const Producto = (props) => {
 Producto.getInitialProps = async function (context) {
     const { id } = context.query;
     const resProductosTen = await fetch(
-        'http://localhost:5000/api/productos/cantidad/productos'
+        'https://hidden-mesa-67260.herokuapp.com/api/productos/cantidad/productos'
     )
 
 
     const resProducto = await fetch(
-        `http://localhost:5000/api/productos/${id}`
+        `https://hidden-mesa-67260.herokuapp.com/api/productos/${id}`
     )
 
 
     const datoRes = await resProducto.json()
     const datoTipo = await fetch(
-        `http://localhost:5000/api/categorias/${datoRes[0].fk_categorias}`
+        `https://hidden-mesa-67260.herokuapp.com/api/categorias/${datoRes[0].fk_categorias}`
     )
 
     const datosCategoria = await datoTipo.json()

@@ -171,12 +171,12 @@ const Categorias = (props) => {
 Categorias.getInitialProps = async function (context) {
     const { id, filter_diametro, filter_largo, filter_marca } = context.query;
     const resTipos = await fetch(
-        `http://localhost:5000/api/tipos/${id}/`
+        `https://hidden-mesa-67260.herokuapp.com/api/tipos/${id}/`
     )
     const dataTipos = await resTipos.json();
     if (filter_diametro !== undefined || filter_largo !== undefined || filter_marca !== undefined) {
         const resProductos = await fetch(
-            `http://localhost:5000/api/tipos/categoria/${id}?filter_diametro=${filter_diametro}&filter_marca=${filter_marca}&filter_largo=${filter_largo}`,
+            `https://hidden-mesa-67260.herokuapp.com/tipos/categoria/${id}?filter_diametro=${filter_diametro}&filter_marca=${filter_marca}&filter_largo=${filter_largo}`,
         )
         const datos = await resProductos.json()
         const datosFilterLargo = dataTipos.largo.filter(item => item.largo !== filter_largo)
@@ -195,7 +195,7 @@ Categorias.getInitialProps = async function (context) {
     }
 
     const resProductos = await fetch(
-        `http://localhost:5000/api/productos/categoria/${id}`
+        `https://hidden-mesa-67260.herokuapp.com/api/productos/categoria/${id}`
     )
     const datos = await resProductos.json()
     return {

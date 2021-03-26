@@ -258,10 +258,10 @@ const Home = (props) => {
 
 Home.getInitialProps = async function () {
   const resCategorias = await fetch(
-    "http://localhost:5000/api/categorias"
+    "https://hidden-mesa-67260.herokuapp.com/api/categorias"
   )
   const resProductos = await fetch(
-    "http://localhost:5000/api/productos/cantidad/productos"
+    "https://hidden-mesa-67260.herokuapp.com/api/productos/cantidad/productos"
   )
   const dataCategorias = await resCategorias.json()
   const dataProductos = await resProductos.json()
