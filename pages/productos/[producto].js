@@ -73,7 +73,7 @@ const Producto = (props) => {
             <Link href={{ path: '/productos/[producto]', pathname: `/productos/${item.nombre}`, query: { id: item.id, producto: item.nombre } }} key={item.id}>
                 <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="cursor-pointer bg-white max-w-xs p-4 hover:shadow-lg rounded-lg transition duration-100 flex flex-col space-y-4">
                     <div className="border rounded-lg">
-                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-60 object-cover" alt={item.nombre} />
+                        <motion.img initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} src={item.imagen} className="h-52 object-cover" alt={item.nombre} />
                     </div>
                     <div className="flex justify-between items-center">
                         <h4 className="w-3/5 overflow-ellipsis overflow-hidden break-normal heroBanner text-sm">{item.nombre}</h4>
@@ -96,11 +96,11 @@ const Producto = (props) => {
                     className={styles.container}
                 >
                     <div className="p-2">
-                        <div className="bg-white rounded-lg w-11/12 m-auto border p-8 shadow-lg flex-col lg:flex-row flex space-x-8">
+                        <div className="bg-white rounded-lg w-full lg:w-11/12 m-auto border p-8 shadow-lg flex-col items-center lg:flex-row flex space-x-8">
                             <div className="p-4 border rounded-lg max-w-lg">
-                                <img className="h-96 object-cover" src={props.producto[0].imagen} alt={props.producto[0].nombre} />
+                                <img className="h-44  lg:h-96 object-cover" src={props.producto[0].imagen} alt={props.producto[0].nombre} />
                             </div>
-                            <div className="flex flex-col space-y-4 w-2/3">
+                            <div className="flex flex-col space-y-4 w-full lg:w-2/3">
                                 <div className={`${styles.Title}`}>
                                     <h4 className="overflow-hidden">{props.producto[0].nombre}</h4>
                                 </div>
@@ -137,7 +137,7 @@ const Producto = (props) => {
                         </div>
 
                         {/*  Seccion productos similares */}
-                        <div className="bg-white w-11/12 m-auto p-4 mt-5 shadow-lg rounded-lg border">
+                        <div className="bg-white w-full lg:w-11/12 m-auto p-4 mt-5 shadow-lg rounded-lg border">
                             <div className="mb-10 border-b">
                                 <h1 className="text-2xl font-medium">Productos Similares</h1>
                             </div>

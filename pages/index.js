@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import MyGallery from '../components/Gallery/Gallery'
 import ContentModal from '../components/ContentModal/ContentModal'
-
+import { useWindowSize } from '../components/ScreenDimension'
 
 
 
@@ -82,6 +82,9 @@ const Home = (props) => {
     )
   })
 
+  const size  = useWindowSize()
+
+
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -92,7 +95,7 @@ const Home = (props) => {
         <title>Zuky Tornillos</title>
       </Head>
       <Layout>
-        <div className={styles.hero}>
+        <div className={styles.hero} style={{backgroundImage:`url(${size.width > 600 ? "/hero.webp" : "/tornillo-movil.jpg"})`}}>
           <motion.div variants={fadeInUp} className={styles.text}>
             <h1>Gama completa de tuercas, Tornillos y pernos</h1>
             <ContentModal>
@@ -188,7 +191,7 @@ const Home = (props) => {
             responsive={responsive}
             renderNextButton={renderNext}
             renderPrevButton={renderPrev}
-            className=""
+            className="m-auto"
           />
         </motion.div>
 

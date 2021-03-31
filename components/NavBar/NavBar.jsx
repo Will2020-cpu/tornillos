@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import Drawer from './Drawer'
+import Drawer from './Sidebar'
 
 
 
@@ -27,18 +27,21 @@ const NavBar = () => {
             </div>
             <div className="bg-customGray top-0 sticky z-20">
                 <div className="h-14 w-11/12 m-auto flex justify-between">
-                    <nav className="h-full hidden lg:flex items-center  nav uppercase space-x-4">
+                    <nav className="h-full hidden lg:flex items-center  nav uppercase space-x-8">
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Inicio</a></Link>
                         <Link href="/#categorias"><a className="text-white hover:text-red-400 transition duration-500">Categoria</a></Link>
                         <Link href="/#productos"><a className="text-white hover:text-red-400 transition duration-500">Productos</a></Link>
                         <Link href="/#whyus"><a className="text-white hover:text-red-400 transition duration-500">Porque nosotros</a></Link>
-                    </nav>
-                    <nav className="h-full hidden lg:flex items-center nav uppercase space-x-4">
                         <Link href="/#nosotros"><a className="text-white hover:text-red-400 transition duration-500">Sobre nosotros</a></Link>
                         <Link href="/#galeria"><a className="text-white hover:text-red-400 transition duration-500">Galeria</a></Link>
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Videos</a></Link>
                         <Link href="/#contacto"><a className="text-white hover:text-red-400 transition duration-500">Contacto</a></Link>
                     </nav>
+                    <nav className="h-full hidden lg:flex items-center nav uppercase space-x-4">
+                        <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Ingresar</a></Link>
+                        <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Crea tu Cuenta</a></Link> 
+                    </nav>
+
                     {/* Seccion Movil */}
                     <div className="h-full flex items-center lg:hidden"> <Link href="/"><a className="text-white" >Logo</a></Link></div>
                     <div className="h-full flex items-center lg:hidden">
