@@ -38,7 +38,7 @@ const NavBar = () => {
                         <Link href="/#contacto"><a className="text-white hover:text-red-400 transition duration-500">Contacto</a></Link>
                     </nav>
                     <nav className="h-full hidden lg:flex items-center nav uppercase space-x-4">
-                        <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Ingresar</a></Link>
+                        <Link href="/login/ingresar"><a className="text-white hover:text-red-400 transition duration-500">Ingresar</a></Link>
                         <Link href="/"><a className="text-white hover:text-red-400 transition duration-500">Crea tu Cuenta</a></Link> 
                     </nav>
 
