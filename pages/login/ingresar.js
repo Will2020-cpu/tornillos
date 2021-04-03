@@ -28,11 +28,11 @@ const Ingresar = () => {
                                         <TextField id="standart-basic" label="Password" />
                                     </div>
                                     <div className="px-4 w-full">
-                                        <button className="w-full bg-red-500 p-2 rounded-lg text-xl text-white">Ingresar</button>
+                                        <button className="w-full bg-red-500 p-2 rounded-lg text-xl text-white focus:outline-none">Ingresar</button>
                                     </div>
                                 </form>
                                 <div className="px-4 w-full mt-2">
-                                    <button className="w-full border border-red-500 p-2 rounded-lg text-lg">Crear cuenta</button>
+                                    <button className="w-full border border-red-500 p-2 rounded-lg text-lg focus:outline-none">Crear cuenta</button>
                                 </div>
                             </div>
                         </div>
