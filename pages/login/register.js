@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import styles from '../../styles/login.module.css'
+import { motion } from 'framer-motion'
 import Footer from '../../components/Footer/Footer'
 import Link from 'next/link'
 import TextField from '@material-ui/core/TextField'
-import { motion } from 'framer-motion'
 
 
 
@@ -36,11 +36,11 @@ const stagger = {
 
 
 
-const Ingresar = () => {
+const Register = () => {
     return (
         <>
             <Head>
-                <title>Ingresa a tu cuenta!</title>
+                <title>Registrate y guarda tus productos !</title>
             </Head>
             <motion.div
                 exit={{ opacity: 0 }}
@@ -52,21 +52,22 @@ const Ingresar = () => {
                         <div className={styles.hero}>
                             <div className="p-8"><Link href="/"><a className="text-white">Logo</a></Link></div>
                             <div className={styles.formContainer}>
-                                <motion.div variants={fadeInUp} className="bg-white p-12 rounded lg:shadow-lg shadow-none">
+                                <motion.div variants={fadeInUp} className="bg-white p-12 rounded lg:shadow-lg shadow-none max-w-lg">
                                     <div className="">
-                                        <h1 className="lg:text-2xl text-xl font-semibold text-center">¡Hola! Ingresa a tu cuenta</h1>
+                                        <h1 className="lg:text-2xl text-xl font-semibold text-center">¡Hola! Crea tu cuenta</h1>
                                     </div>
                                     <form className="flex space-y-8 flex-col justify-center items-center">
                                         <div className="flex flex-col w-full space-y-4 items-center justify-center mt-5">
+                                            <TextField id="standart-basic" label="Nombres" />
                                             <TextField id="standart-basic" label="Email" />
                                             <TextField id="standart-basic" label="Password" />
                                         </div>
-                                        <div className="px-4 w-full">
-                                            <button className="w-full bg-red-500 p-2 rounded-lg text-xl text-white focus:outline-none">Ingresar</button>
+                                        <div className=" w-full">
+                                            <button className="w-full bg-red-500 p-2 rounded-lg text-xl text-white focus:outline-none">Registrarse</button>
                                         </div>
                                     </form>
-                                    <div className="px-4 w-full mt-2">
-                                        <button className="w-full border border-red-500 p-2 rounded-lg text-lg focus:outline-none">Crear cuenta</button>
+                                    <div className=" w-full mt-2">
+                                        <Link href="/login/ingresar"><button className="w-full border border-red-500 p-2 rounded-lg text-lg focus:outline-none">Ingresar</button></Link>
                                     </div>
                                 </motion.div>
                             </div>
@@ -74,11 +75,9 @@ const Ingresar = () => {
                     </div>
                 </div>
             </motion.div>
-            <Footer />
         </>
     )
 }
 
 
-
-export default Ingresar
+export default Register
